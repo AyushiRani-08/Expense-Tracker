@@ -1,0 +1,49 @@
+.main-sec{
+    flex:1;
+    min-height:100vh;
+    padding-bottom: 15vh;
+    position: relative;
+    width: 100%;
+
+}
+.main-sec .navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 22px;
+    padding: 20px;
+    color:#585858;
+    width: 100%;              /* ✅ force navbar full width */
+    box-sizing: border-box; 
+}
+.main-sec img{
+    width:50px;
+}
+.profile {
+  display: flex;
+  align-items: center;   /* centers img with text vertically */
+  gap: 10px;             /* space between image & text */
+}
+
+.profile-text p {
+  font-size: 16px;
+  margin: 0;
+}
+
+.profile-text span {
+  display: block;        /* ensures it goes to next line */
+  font-size: 14px;
+  color: #777;
+}
+.navbar .search-input input{
+    min-height: 30px;
+    border-radius: 6px;
+
+}
+
+/* .main-sec .navbar .search-input{
+    width:400px;
+}
+.main-sec .navbar .date-time{
+    width:300px;
+} */
