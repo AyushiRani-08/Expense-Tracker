@@ -13,7 +13,7 @@
     font-size: 22px;
     padding: 20px;
     color:#585858;
-    width: 100%;              /* ✅ force navbar full width */
+    width: 100%;              
     box-sizing: border-box; 
 }
 .main-sec img{
@@ -21,9 +21,9 @@
 }
 .profile {
   display: flex;
-  align-items: center;   /* centers img with text vertically */
-  gap: 10px;             /* space between image & text */
-}
+  align-items: center;  
+  gap: 10px;  
+}          
 
 .profile-text p {
   font-size: 16px;
@@ -31,19 +31,105 @@
 }
 
 .profile-text span {
-  display: block;        /* ensures it goes to next line */
+  display: block;        
   font-size: 14px;
   color: #777;
 }
 .navbar .search-input input{
     min-height: 30px;
     border-radius: 6px;
+    border: none;
+    outline: none;
+    background-color: #e5e3e3;
+    padding: 10px;
+    width:500px;
 
 }
-
-/* .main-sec .navbar .search-input{
-    width:400px;
+.add-expense{
+  display: flex;
+  justify-content: space-between;
+  padding:25px;
+  width:90%;
 }
-.main-sec .navbar .date-time{
-    width:300px;
-} */
+.add-expense div{
+  padding:5px;
+  background-color: #9e9c9c;
+  flex:1
+}
+.add-expense div input{
+  width:100%;
+  padding:10px;
+  height:30px;
+  border: none;
+  border-radius: 10px;
+  outline:none;
+}
+.expenses-sec {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow-x: auto; 
+
+  .table {
+    width: 100%;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px; 
+
+      thead {
+        background-color: #007bff;
+        color: #fff;
+
+        th {
+          padding: 12px 15px;
+          text-align: left;
+          font-weight: 600;
+        }
+      }
+
+      tbody {
+        tr {
+          &:nth-child(even) {
+            background-color: #f1f1f1;
+          }
+
+          &:hover {
+            background-color: #e2e6ea;
+          }
+
+          td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #ddd;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 768px) {
+  .expenses-sec {
+    padding: 10px;
+
+    table {
+      min-width: 100%;
+      thead {
+        th {
+          font-size: 14px;
+          padding: 8px;
+        }
+      }
+
+      tbody {
+        td {
+          font-size: 14px;
+          padding: 8px;
+        }
+      }
+    }
+  }
+}

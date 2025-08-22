@@ -4,6 +4,11 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Sidebar from './Components/Sidebar'
 import Expenses from './Components/Expenses'
+import LIneChartComponent from './Components/LIneChartComponent'
+
+
+
+
 
 
 function App() {
@@ -14,6 +19,10 @@ function App() {
       <div className='app'>
         <Sidebar/>
         <Expenses/>
+        {/* <LIneChartComponent/> */}
+        
+
+        
         
       </div>
       

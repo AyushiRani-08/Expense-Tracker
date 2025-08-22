@@ -4,6 +4,7 @@ import './Sidebar.css'
 import woman from './woman.png'
 import settings from './setting.png'
 import about from './information-button.png'
+
 const Sidebar = () => {
     return (
         <div className='sidebar'>
@@ -18,6 +19,10 @@ const Sidebar = () => {
                     </div>
                     <div className="goal">
                         <img src={assests.goal} alt="" />
+                        <p>Goals</p>
+                    </div>
+                    <div className="dashboard">
+                        <img src={assests.dashboard} alt="" />
                         <p>Goals</p>
                     </div>
                 </div>

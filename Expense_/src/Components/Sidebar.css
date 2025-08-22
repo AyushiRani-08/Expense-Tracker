@@ -33,12 +33,23 @@
     margin:10px;
     margin-bottom: 20px;
     cursor: pointer;
+    padding:10px;
+}
+.sidebar .menu-comp div:hover{
+    border-radius: 30px;
+    background-color: rgb(194, 192, 192);
 }
 .sidebar .menu-comp div p{
     display: flex;
     align-items: center;
 }
-.bottom{
+.bottom div{
+    padding:9px;
+}
+.bottom div:hover{
+    border-radius: 30px;
+    background-color: rgb(194, 192, 192);
+    
     
 }
 .bottom-icon{
