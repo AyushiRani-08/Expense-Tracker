@@ -1,104 +1,87 @@
-import React, { useEffect } from 'react'
-import woman from './woman.png'
-import './Expenses.css'
-import { useState } from 'react'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
+import React, { useState, useEffect } from 'react';
+import woman from './woman.png';
+import sastra from './sastra.jpeg';
+import './Expenses.css';
 const Expenses = () => {
-    const data = [
-        {
-            name: 'Page A',
-            uv: 4000,
-            pv: 2400,
-            amt: 2400,
-        },
-        {
-            name: 'Page B',
-            uv: 3000,
-            pv: 1398,
-            amt: 2210,
-        },
-        {
-            name: 'Page C',
-            uv: 2000,
-            pv: 9800,
-            amt: 2290,
-        },
-        {
-            name: 'Page D',
-            uv: 2780,
-            pv: 3908,
-            amt: 2000,
-        },
-        {
-            name: 'Page E',
-            uv: 1890,
-            pv: 4800,
-            amt: 2181,
-        },
-        {
-            name: 'Page F',
-            uv: 2390,
-            pv: 3800,
-            amt: 2500,
-        },
-        {
-            name: 'Page G',
-            uv: 3490,
-            pv: 4300,
-            amt: 2100,
-        },
-    ];
+    const [search, setSearch] = useState('');
+    
 
-    const [Expenses, setExpenses] = useState([
-        { id: 1, category: "food", amount: 500.0, date: "12 August", mode: "Cash" },
-        { id: 2, category: "stationary", amount: 50.0, date: "16 August", mode: "UPI" }
-    ])
-    const addExpenses = () => {
-        const newExpense = {
-            id: Expenses.length + 1,
-            category: " ",
-            amount: 0.0,
-            mode: " "
+    const [input, setInput] = useState({
+        category: "",
+        amount: "",
+        date: "",
+        mode: ""
+    })
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setInput({ ...input, [name]: value });
+    };
+
+    // State for expenses
+    const [expenses, setExpenses] = useState([]
+        // { id: 1, category: "Food", amount: 500.0, date: "12 August", mode: "Cash" },
+        // { id: 2, category: "Stationary", amount: 50.0, date: "16 August", mode: "UPI" }
+    );
+    const filteredExpenses = expenses.filter(exp =>
+        exp.category.toLowerCase().includes(search.toLowerCase()) ||
+        exp.date.toLowerCase().includes(search.toLowerCase()) ||
+        exp.mode.toLowerCase().includes(search.toLowerCase()) ||
+        exp.amount.toString().includes(search)
+    );
+
+    // Add a new blank expense row
+    const addExpense = () => {
+        if (!input.category || !input.amount || !input.date || !input.mode) {
+            alert("Please fill all fields");
+            return;
         }
-        setExpenses([...Expenses, newExpense])
-    }
+        const newExpense = {
+            id: expenses.length + 1,
+            category: (input.category),
+            amount: (input.amount),
+            date: (input.date),
+            mode: (input.mode)
+        };
+        setExpenses([...expenses, newExpense]);
 
+        setInput({ category: "", amount: "", date: "", mode: "" });
+    };
+
+    // Clock and date
     useEffect(() => {
-        function updateDateTime() {
-            const now = new Date();
 
-            // Format date
-            const date = now.toLocaleDateString('en-US', {
+        const updateDateTime = () => {
+            const now = new Date();
+            document.getElementById("date").textContent = now.toLocaleDateString('en-US', {
                 weekday: 'long',
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric'
             });
-
-            // Format time
-            const time = now.toLocaleTimeString([], {
+            document.getElementById("time").textContent = now.toLocaleTimeString([], {
                 hour: '2-digit',
-                minute: '2-digit',
-                // second: '2-digit'
+                minute: '2-digit'
             });
-
-            document.getElementById("date").textContent = date;
-            document.getElementById("time").textContent = time;
-        }
-
-        updateDateTime(); // run once
+        };
+        updateDateTime();
         const interval = setInterval(updateDateTime, 60000);
-
-        return () => clearInterval(interval); // cleanup when component unmounts
+        return () => clearInterval(interval);
     }, []);
 
     return (
-        <div className='main-sec'>
+        <div className="main-sec">
             <div className="navbar">
+                <div className="logo">
+                    <img src={sastra} alt="" />
+                </div>
+
+
+                <div className="search-input">
+                    <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search expenses, transactions" />
+                </div>
                 <div className="profile">
                     <div className="profile-icon">
-                        <img src={woman} alt="" />
+                        <img src={woman} alt="Profile" />
                     </div>
                     <div className="profile-text">
                         <p>Hii, Ayushi</p>
@@ -106,87 +89,90 @@ const Expenses = () => {
                     </div>
                 </div>
 
-                <div className="search-input">
-                    <input type="text" placeholder='Search expenses, transactions' />
-                </div>
-
-                {/* Date & Time Section */}
                 <div className="date-time">
                     <p id="date"></p>
                     <span id="time"></span>
                 </div>
             </div>
+
             <div className="add-expense">
                 <div className="add-category">
-                    <input type='text' placeholder='Add category' />
-
+                    <input type="text" name="category" value={input.category} placeholder="Add category" onChange={handleChange} />
                 </div>
                 <div className="add-date">
-                    <input type='text' placeholder='Add date' />
+                    <input type="text" name="date" value={input.date} placeholder="Add date" onChange={handleChange} />
                 </div>
                 <div className="mode">
-                    <input type='text' placeholder='Add mode' />
-
+                    <input type="text" name="mode" value={input.mode} placeholder="Add mode" onChange={handleChange} />
                 </div>
                 <div className="add-amount">
-                    <input type='text' placeholder='Add amount' />
+                    <input type="text" name="amount" value={input.amount} placeholder="Add amount" onChange={handleChange} />
                 </div>
+                <button onClick={addExpense}>Add Expense</button>
             </div>
 
             <div className="expenses-sec">
-                <div className="table">
+                {expenses.length == 0
+                    ? <p style={{ textAlign: "center" }}>No expenses till now!</p>
+                    :
                     <table>
                         <thead>
                             <tr>
                                 <th>S No</th>
+                                <th>Category</th>
                                 <th>Amount</th>
-                                <th>category</th>
                                 <th>Date</th>
                                 <th>Mode</th>
                             </tr>
                         </thead>
-
                         <tbody>
-                            {Expenses.map((exp) => (
-                                <tr key={exp.id}>
-                                    <td>{exp.id}</td>
-                                    <td>{exp.category}</td>
-                                    <td>{exp.amount}</td>
-                                    <td>{exp.date}</td>
-                                    <td>{exp.mode}</td>
+                            {filteredExpenses.length === 0 ? (
+                                <tr>
+                                    <td colSpan="5" style={{ textAlign: "center" }}>
+                                        No results found.
+                                    </td>
                                 </tr>
+                            ) : (
+                                filteredExpenses.map(exp => (
+                                    <tr key={exp.id}>
+                                        <td>{exp.id}</td>
+                                        <td>{exp.category}</td>
+                                        <td>{exp.amount}</td>
+                                        <td>{exp.date}</td>
+                                        <td>{exp.mode}</td>
+                                    </tr>
+                                ))
+                            )}
+                            {/* {expenses
+                                .filter(exp =>
+                                    exp.category.toLowerCase().includes(search.toLowerCase()) ||
+                                    exp.date.toLowerCase().includes(search.toLowerCase()) ||
+                                    exp.mode.toLowerCase().includes(search.toLowerCase()) ||
+                                    exp.amount.toString().includes(search)
+                                )
+                                .map(exp => (
+                                    <tr key={exp.id}>
+                                        <td>{exp.id}</td>
+                                        <td>{exp.category}</td>
+                                        <td>{exp.amount}</td>
+                                        <td>{exp.date}</td>
+                                        <td>{exp.mode}</td>
+                                    </tr>
+                                ))} */}
 
-                            ))}
+
+
                         </tbody>
-
                     </table>
-                </div>
-            </div>
-            <div className="linechart">
-                <ResponsiveContainer width="100%" height="100%">
-                    <LineChart
-                        width={500}
-                        height={300}
-                        data={data}
-                        margin={{
-                            top: 5,
-                            right: 30,
-                            left: 20,
-                            bottom: 5,
-                        }}
-                    >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-                        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-                    </LineChart>
-                </ResponsiveContainer>
-            </div>
-        </div>
-    )
-}
+                }
 
-export default Expenses
+            </div>
+
+
+
+
+        </div>
+    );
+};
+
+export default Expenses;

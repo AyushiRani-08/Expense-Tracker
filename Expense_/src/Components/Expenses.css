@@ -1,29 +1,38 @@
-.main-sec{
-    flex:1;
-    min-height:100vh;
-    padding-bottom: 15vh;
-    position: relative;
-    width: 100%;
 
+.main-sec {
+  flex: 1;
+  min-height: 100vh;
+  padding-bottom: 15vh;
+  position: relative;
+  width: 100%;
+  font-family: Arial, sans-serif;
 }
-.main-sec .navbar{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 22px;
-    padding: 20px;
-    color:#585858;
-    width: 100%;              
-    box-sizing: border-box; 
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 22px;
+  padding: 20px;
+  color: #585858;
+  width: 100%;
+  box-sizing: border-box;
 }
-.main-sec img{
-    width:50px;
+
+.navbar img {
+  width: 50px;
 }
+.navbar .logo img{
+  width:100px;
+}
+
+/* Profile */
 .profile {
   display: flex;
-  align-items: center;  
-  gap: 10px;  
-}          
+  align-items: center;
+  gap: 10px;
+}
 
 .profile-text p {
   font-size: 16px;
@@ -31,105 +40,130 @@
 }
 
 .profile-text span {
-  display: block;        
+  display: block;
   font-size: 14px;
   color: #777;
 }
-.navbar .search-input input{
-    min-height: 30px;
-    border-radius: 6px;
-    border: none;
-    outline: none;
-    background-color: #e5e3e3;
-    padding: 10px;
-    width:500px;
 
+/* Search input */
+.navbar .search-input input {
+  min-height: 30px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  background-color: #e5e3e3;
+  padding: 10px;
+  width: 500px;
 }
-.add-expense{
+
+/* Add Expense Section */
+.add-expense {
   display: flex;
   justify-content: space-between;
-  padding:25px;
-  width:90%;
+  gap: 10px;
+  padding: 20px;
+  background-color: #e5e3e3;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(12, 11, 11, 0.1);
+  overflow-x: auto;
 }
-.add-expense div{
-  padding:5px;
-  background-color: #9e9c9c;
-  flex:1
+
+.add-expense div {
+  flex: 1;
+  background-color: #e5e3e3;
+  padding: 5px;
+  border-radius: 6px;
 }
-.add-expense div input{
-  width:100%;
-  padding:10px;
-  height:30px;
+
+.add-expense div input {
+  width: 100%;
+  padding: 10px;
+  height: 30px;
   border: none;
   border-radius: 10px;
-  outline:none;
+  outline: none;
 }
+.add-expense div input:hover{
+  border: 1px solid #4e9bed; /* ensures the border is visible */
+  outline: none; 
+}
+
+.add-expense button {
+  padding: 10px 20px;
+  background-color: #4e9bed;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.add-expense button:hover {
+  background-color: #0056b3;
+}
+
+/* Expenses Table */
 .expenses-sec {
   padding: 20px;
   background-color: #f8f9fa;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  overflow-x: auto; 
-
-  .table {
-    width: 100%;
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 600px; 
-
-      thead {
-        background-color: #007bff;
-        color: #fff;
-
-        th {
-          padding: 12px 15px;
-          text-align: left;
-          font-weight: 600;
-        }
-      }
-
-      tbody {
-        tr {
-          &:nth-child(even) {
-            background-color: #f1f1f1;
-          }
-
-          &:hover {
-            background-color: #e2e6ea;
-          }
-
-          td {
-            padding: 10px 15px;
-            border-bottom: 1px solid #ddd;
-          }
-        }
-      }
-    }
-  }
+  overflow-x: auto;
+  margin-top:30px;
 }
 
+.expenses-sec table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
 
+.expenses-sec thead {
+  background-color: #4e9bed;
+  color: #fff;
+}
+
+.expenses-sec thead th {
+  padding: 12px 15px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.expenses-sec tbody tr:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+.expenses-sec tbody tr:hover {
+  background-color: #e2e6ea;
+}
+
+.expenses-sec tbody td {
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .expenses-sec {
     padding: 10px;
+  }
 
-    table {
-      min-width: 100%;
-      thead {
-        th {
-          font-size: 14px;
-          padding: 8px;
-        }
-      }
+  .expenses-sec table {
+    min-width: 100%;
+  }
 
-      tbody {
-        td {
-          font-size: 14px;
-          padding: 8px;
-        }
-      }
-    }
+  .expenses-sec thead th,
+  .expenses-sec tbody td {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .navbar .search-input input {
+    width: 100%;
+  }
+
+  .add-expense {
+    flex-direction: column;
+    width: 95%;
   }
 }
+
