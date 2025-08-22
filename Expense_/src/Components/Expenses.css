@@ -143,6 +143,12 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .date-time{
+    display: none;
+  }
+  .profile{
+    display: none;
+  }
   .expenses-sec {
     padding: 10px;
   }

@@ -12,15 +12,15 @@ import Expenses from './Components/Expenses'
 
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [expenses, setExpenses] = useState([]);
   return (
     <>
       <div className='app'>
-        <Sidebar/>
-        <Expenses/>
+        <Sidebar expenses={expenses} />
+        
+        <Expenses expenses={expenses} setExpenses={setExpenses} />
       </div>
-      
+
     </>
   )
 }

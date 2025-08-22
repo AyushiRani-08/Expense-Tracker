@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import woman from './woman.png';
 import sastra from './sastra.jpeg';
 import './Expenses.css';
+import Sidebar from "./Sidebar";
 const Expenses = () => {
     const [search, setSearch] = useState('');
-    
+
 
     const [input, setInput] = useState({
         category: "",
@@ -70,6 +71,7 @@ const Expenses = () => {
 
     return (
         <div className="main-sec">
+            
             <div className="navbar">
                 <div className="logo">
                     <img src={sastra} alt="" />
@@ -143,22 +145,6 @@ const Expenses = () => {
                                     </tr>
                                 ))
                             )}
-                            {/* {expenses
-                                .filter(exp =>
-                                    exp.category.toLowerCase().includes(search.toLowerCase()) ||
-                                    exp.date.toLowerCase().includes(search.toLowerCase()) ||
-                                    exp.mode.toLowerCase().includes(search.toLowerCase()) ||
-                                    exp.amount.toString().includes(search)
-                                )
-                                .map(exp => (
-                                    <tr key={exp.id}>
-                                        <td>{exp.id}</td>
-                                        <td>{exp.category}</td>
-                                        <td>{exp.amount}</td>
-                                        <td>{exp.date}</td>
-                                        <td>{exp.mode}</td>
-                                    </tr>
-                                ))} */}
 
 
 
@@ -167,6 +153,7 @@ const Expenses = () => {
                 }
 
             </div>
+
 
 
 
