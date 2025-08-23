@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { assests } from '../assets/assests'
 import './Sidebar.css'
-import about from './information-button.png'
 import About from './About'
 
 const Sidebar = () => {
@@ -23,7 +22,7 @@ const Sidebar = () => {
                 <div className={`sidebar ${showSidebar ? "active" : ""}`}>
                     <div className="about-sec">
                         <div className="bottom-icon" onClick={() => setOpen(true)}>
-                            <img src={about} alt="about" />
+                            <img src={assests.about_icon} alt="about" />
                             <p>About</p>
                         </div>
                     </div>

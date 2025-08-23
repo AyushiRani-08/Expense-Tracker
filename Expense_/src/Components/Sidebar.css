@@ -4,7 +4,7 @@
   left: -200px; /* hidden */
   width: 200px;
   height: 100vh;
-  background: white; /* transparent black */
+  background: rgba(0, 0, 0, 0.2); /* transparent black */
   backdrop-filter: blur(6px);
   color: black;
   transition: left 0.3s ease;

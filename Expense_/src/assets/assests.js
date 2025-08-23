@@ -1,11 +1,12 @@
-import expenses from './expenses.png'
-import goal from './goal.png'
 import menu from './menu_icon.png'
-import dashboard from './dashboard.png'
+import about_icon from './information-button.png'
+import sastra_icon from './sastra.jpeg'
+import user from './user.png'
+
 
 export const assests={
-    expenses,
-    goal,
     menu,
-    dashboard
+    about_icon,
+    sastra_icon,
+    user
 }

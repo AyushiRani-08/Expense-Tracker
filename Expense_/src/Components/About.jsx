@@ -19,6 +19,8 @@ const About = ({ open, setClose }) => {
             <li>Add and view expenses with category, amount, date, and mode</li>
             <li>Search expenses instantly</li>
             <li>Real-time date and time display</li>
+            <li>Categorize your expense </li>
+            <li>Calculate total expenses</li>
           </ul>
         </div>
         <div className="button">

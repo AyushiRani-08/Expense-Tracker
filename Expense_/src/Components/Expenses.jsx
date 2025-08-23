@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import userimg from './user.png'
-import sastra from './sastra.jpeg';
+import { assests } from '../assets/assests';
 import './Expenses.css';
 import Sidebar from "./Sidebar";
 const Expenses = ({ expenses, setExpenses }) => {
@@ -85,7 +84,7 @@ const Expenses = ({ expenses, setExpenses }) => {
 
             <div className="navbar">
                 <div className="logo">
-                    <img src={sastra} alt="" />
+                    <img src={assests.sastra_icon} alt="" />
                 </div>
 
 
@@ -94,7 +93,7 @@ const Expenses = ({ expenses, setExpenses }) => {
                 </div>
                 <div className="profile">
                     <div className="profile-icon">
-                        <img src={userimg} alt="Profile" />
+                        <img src={assests.user} alt="Profile" />
                     </div>
                     <div className="profile-text">
                         <p>Hii, Ayushi</p>
