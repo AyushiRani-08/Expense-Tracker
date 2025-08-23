@@ -1,9 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import woman from './woman.png';
+import userimg from './user.png'
 import sastra from './sastra.jpeg';
 import './Expenses.css';
 import Sidebar from "./Sidebar";
-const Expenses = () => {
+const Expenses = ({ expenses, setExpenses }) => {
+    const getCategoryTotals = () => {
+        const totals = {};
+        expenses.forEach(exp => {
+            if (totals[exp.category]) {
+                totals[exp.category] += Number(exp.amount);
+            } else {
+                totals[exp.category] = Number(exp.amount);
+            }
+        });
+        return totals;
+    };
+
     const [search, setSearch] = useState('');
 
 
@@ -18,11 +30,10 @@ const Expenses = () => {
         setInput({ ...input, [name]: value });
     };
 
-    // State for expenses
-    const [expenses, setExpenses] = useState([]
-        // { id: 1, category: "Food", amount: 500.0, date: "12 August", mode: "Cash" },
-        // { id: 2, category: "Stationary", amount: 50.0, date: "16 August", mode: "UPI" }
-    );
+
+    useEffect(() => {
+        localStorage.setItem("expenses", JSON.stringify(expenses));
+    }, [expenses]);
     const filteredExpenses = expenses.filter(exp =>
         exp.category.toLowerCase().includes(search.toLowerCase()) ||
         exp.date.toLowerCase().includes(search.toLowerCase()) ||
@@ -71,7 +82,7 @@ const Expenses = () => {
 
     return (
         <div className="main-sec">
-            
+
             <div className="navbar">
                 <div className="logo">
                     <img src={sastra} alt="" />
@@ -83,7 +94,7 @@ const Expenses = () => {
                 </div>
                 <div className="profile">
                     <div className="profile-icon">
-                        <img src={woman} alt="Profile" />
+                        <img src={userimg} alt="Profile" />
                     </div>
                     <div className="profile-text">
                         <p>Hii, Ayushi</p>
@@ -113,46 +124,79 @@ const Expenses = () => {
                 <button onClick={addExpense}>Add Expense</button>
             </div>
 
-            <div className="expenses-sec">
-                {expenses.length == 0
-                    ? <p style={{ textAlign: "center" }}>No expenses till now!</p>
-                    :
+            <div className="expense">
+                <div className="expenses-sec">
+                    {expenses.length == 0
+                        ? <p style={{ textAlign: "center" }}>No expenses till now!</p>
+                        :
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>S No</th>
+                                    <th>Category</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                    <th>Mode</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {filteredExpenses.length === 0 ? (
+                                    <tr>
+                                        <td colSpan="5" style={{ textAlign: "center" }}>
+                                            No results found.
+                                        </td>
+                                    </tr>
+                                ) : (
+                                    filteredExpenses.map(exp => (
+                                        <tr key={exp.id}>
+                                            <td>{exp.id}</td>
+                                            <td>{exp.category}</td>
+                                            <td>{exp.amount}</td>
+                                            <td>{exp.date}</td>
+                                            <td>{exp.mode}</td>
+                                        </tr>
+                                    ))
+                                )}
+
+
+
+                            </tbody>
+                        </table>
+
+                    }
+
+                </div>
+                <div className="category-totals expenses-sec">
                     <table>
                         <thead>
                             <tr>
-                                <th>S No</th>
                                 <th>Category</th>
-                                <th>Amount</th>
-                                <th>Date</th>
-                                <th>Mode</th>
+                                <th>Total expense as per category </th>
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredExpenses.length === 0 ? (
-                                <tr>
-                                    <td colSpan="5" style={{ textAlign: "center" }}>
-                                        No results found.
-                                    </td>
+                            {Object.entries(getCategoryTotals()).map(([category, tamount]) => (
+                                <tr key={category}>
+                                    <td>{category}</td>
+                                    <td>₹{tamount}</td>
                                 </tr>
-                            ) : (
-                                filteredExpenses.map(exp => (
-                                    <tr key={exp.id}>
-                                        <td>{exp.id}</td>
-                                        <td>{exp.category}</td>
-                                        <td>{exp.amount}</td>
-                                        <td>{exp.date}</td>
-                                        <td>{exp.mode}</td>
-                                    </tr>
-                                ))
-                            )}
 
 
+                            ))}
+                            <tr>
+                                <td><strong>Total</strong></td>
+                                <td>
+                                    <strong>
+                                        ₹{Object.values(getCategoryTotals()).reduce((acc, curr) => acc + curr, 0)}
+                                    </strong>
+                                </td>
+                            </tr>
 
                         </tbody>
                     </table>
-                }
-
+                </div>
             </div>
+
 
 
 

@@ -25,6 +25,7 @@
 }
 .navbar .logo img{
   width:100px;
+  margin-left:40px;
 }
 
 /* Profile */
@@ -89,16 +90,24 @@
 }
 
 .add-expense button {
-  padding: 10px 20px;
+  height: 30px; /* same as inputs */
+  padding: 0 20px; /* horizontal padding only */
   background-color: #4e9bed;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  
 }
 
 .add-expense button:hover {
   background-color: #0056b3;
+}
+.expense{
+  display: flex;
+  justify-content: space-between;
+  width:100%;
+  gap:10px;
 }
 
 /* Expenses Table */
@@ -109,6 +118,7 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   overflow-x: auto;
   margin-top:30px;
+  flex:1;
 }
 
 .expenses-sec table {
@@ -146,7 +156,7 @@
   .date-time{
     display: none;
   }
-  .profile{
+  .profile .profile-text{
     display: none;
   }
   .expenses-sec {
@@ -171,5 +181,16 @@
     flex-direction: column;
     width: 95%;
   }
+  .expense{
+    flex-direction: column;
+  }
 }
+/* .category-totals{
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow-x: auto;
+  margin-top:30px;
+} */
 
